@@ -1,0 +1,12 @@
+- name: Enable wheel group in sudoers
+  lineinfile: "
+    dest=/etc/sudoers
+    state=present
+    regexp='^%wheel'
+    line='%wheel ALL=(ALL) NOPASSWD: ALL'
+  "
+
+- name: Add users to wheel
+  user: name={{item.username}} groups=wheel
+  with_items: devops
+  no_log: true
