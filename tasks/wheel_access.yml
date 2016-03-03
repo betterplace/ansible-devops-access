@@ -8,5 +8,5 @@
 
 - name: Add users to wheel
   user: name={{item.username}} groups=wheel
-  with_items: devops
+  with_items: '{{devops}}'
   no_log: true

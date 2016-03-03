@@ -1,13 +1,13 @@
 ---
 - name: Create user accounts
   user: name={{item.username}} shell=/bin/bash
-  with_items: devops
+  with_items: '{{devops}}'
   no_log: true
 
 - name: Assign authorized_key for respective user
   authorized_key: user={{item.username}}
                   key="{{item.public_key}}"
                   state=present
-  with_items: devops
+  with_items: '{{devops}}'
   no_log: true
   when: item.active

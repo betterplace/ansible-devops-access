@@ -2,12 +2,12 @@
 - name: Remove authorized_keys for disabled user
   file: path=/home/{{item.username}}/.ssh/authorized_keys
         state=absent
-  with_items: devops
+  with_items: '{{devops}}'
   when: not item.active
   no_log: true
 
 - name: Remove user from wheel group
   user: name={{item.username}} groups=wheel state=absent
-  with_items: devops
+  with_items: '{{devops}}'
   when: not item.active
   no_log: true
