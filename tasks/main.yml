@@ -4,3 +4,6 @@
 - include: wheel_access.yml
 
 - include: remove_inactive_user_access.yml
+
+- include: forward_proxy_configuration.yml
+

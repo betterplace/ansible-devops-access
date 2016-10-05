@@ -1,0 +1,17 @@
+- name: Allow betterplace_<app_server_env>_http_proxy in SendEnv
+  lineinfile: >
+    dest=/etc/ssh/sshd_config
+    regexp="^AcceptEnv betterplace_\w+_http_proxy"
+    line="AcceptEnv betterplace_{{app_server_env}}_http_proxy"
+    insertafter="^AcceptEnv"
+  notify: reload sshd
+
+- name: Set http_proxy environment variable from ssh-forwarded variable
+  lineinfile: >
+    dest=/home/{{item.username}}/.bash_profile
+    regexp="export http_proxy=\$betterplace_\w+_http_proxy"
+    line="export http_proxy=$betterplace_{{app_server_env}}_http_proxy"
+    insertafter=EOF
+  with_items: '{{devops}}'
+  when: item.active
+
