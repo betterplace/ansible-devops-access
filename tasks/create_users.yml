@@ -1,6 +1,6 @@
 ---
 - name: Create user accounts
-  user: name={{item.username}} shell=/bin/bash
+  user: name={{item.username}} shell=/bin/bash password={{item.password}}
   with_items: '{{devops}}'
   when: item.active
   no_log: true
