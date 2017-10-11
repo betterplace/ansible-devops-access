@@ -1,7 +1,7 @@
 ---
-- include: create_users.yml
-- include: wheel_access.yml
-- include: remove_inactive_user_access.yml
+- import_tasks: create_users.yml
+- import_tasks: wheel_access.yml
+- import_tasks: remove_inactive_user_access.yml
 
-#- include: forward_proxy_configuration.yml
+#- import_tasks: forward_proxy_configuration.yml
 
